@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Basic Javascript</title>
+  </head>
+  <body>
+    <div>
+      <h1 id="title">Hello SEDC!</h1>
+      <button onclick="changeTitle()">Change Title</button>
+    </div>
+
+    <div>
+      <input type="number" oninput="setNumber(event)" />
+    </div>
+
+    <script>
+      function changeTitle() {
+        var title = document.getElementById("title");
+        title.innerText = "New Title";
+      }
+
+      function setNumber(event) {
+        var input = event.target;
+        var value = input.value;
+        console.log(value);
+      }
+    </script>
+  </body>
+</html>

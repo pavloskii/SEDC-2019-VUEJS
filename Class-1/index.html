@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Class 1</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Data, Events and Methods -->
+      <h1>{{ title }}</h1>
+      <h2>{{ subTitle }}</h2>
+      <!-- v-on:click -->
+      <button @click="changeTitle">Change Title</button>
+
+      <hr />
+      <!-- Conditionals -->
+      <button @click="showParagraph = !showParagraph">
+        Toggle Show paragraph
+      </button>
+      <p v-if="showParagraph">Some paragraph 1</p>
+      <p v-else>The second paragraph</p>
+
+      <p v-show="showParagraph">Show this also</p>
+      <p v-show="!showParagraph">Show this also 2</p>
+
+      <!-- Loops -->
+      <ul>
+        <li v-for="(person, index) in persons">
+          ID: {{ index }} - Name:{{ person.name }} - Age: {{ person.age }}
+        </li>
+      </ul>
+      <!-- Computed -->
+      <hr />
+      <input type="number" @input="setNumber($event.target.value)" />
+      <h1>Number: {{ num }}</h1>
+      <h1>Square Number: {{ squareNumber }}</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          title: "Hello SEDC from Vuejs",
+          subTitle: "Front End Framework",
+          showParagraph: false,
+          persons: [
+            { name: "Igor", age: 28 },
+            { name: "Aleksandra", age: 24 },
+            { name: "random", age: 15 },
+            { name: "Riste", age: 37 }
+          ],
+          num: 0
+        },
+        methods: {
+          changeTitle() {
+            this.title = "Some new Title";
+          },
+          setNumber(value) {
+            this.num = value;
+          }
+        },
+        computed: {
+          squareNumber() {
+            return this.num * this.num;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
