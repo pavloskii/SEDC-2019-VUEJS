@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Class 1</title>
+    <style>
+      .colored {
+        background-color: blue;
+        width: 100px;
+        height: 100px;
+      }
+      .blackSquare {
+        background-color: black;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -36,6 +48,17 @@
       <input type="number" @input="setNumber($event.target.value)" />
       <h1>Number: {{ num }}</h1>
       <h1>Square Number: {{ squareNumber }}</h1>
+      <button @click="num = 4">Num to 4</button>
+
+      <!-- Binding to HTML attributes -->
+      <!-- v-bind:class -->
+      <hr />
+      <div :class="someClass"></div>
+      <input type="text" v-model="someClass" />
+      <h1>The class is: {{ someClass }}</h1>
+      <button @click="someClass = 'blackSquare'">
+        Change color to black
+      </button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -52,7 +75,9 @@
             { name: "random", age: 15 },
             { name: "Riste", age: 37 }
           ],
-          num: 0
+          num: 0,
+          someClass: "colored"
+          //   squareNumberOfNum: 0
         },
         methods: {
           changeTitle() {
@@ -60,6 +85,7 @@
           },
           setNumber(value) {
             this.num = value;
+            // this.squareNumberOfNum = value ** 2;
           }
         },
         computed: {
