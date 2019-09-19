@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Todo App</title>
+  </head>
+  <body>
+    <div id="todo-app">
+      <ul>
+        <li v-for="item in todos">
+          <input type="checkbox" v-model="item.done" />
+          <span>{{ item.text }}</span>
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#todo-app",
+        data: {
+          todos: [
+            { text: "Learn HTML", done: true },
+            { text: "Learn CSS", done: true },
+            { text: "Learn JS", done: true },
+            { text: "Learn Vuejs", done: false }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>
