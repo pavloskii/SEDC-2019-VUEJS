@@ -57,6 +57,9 @@ export default {
   },
   computed: {
     filteredAds() {
+      if (this.searchText == "") {
+        return this.ads;
+      }
       const searchedQuery = this.ads.filter(ad => ad.title == this.searchText);
 
       return searchedQuery;
