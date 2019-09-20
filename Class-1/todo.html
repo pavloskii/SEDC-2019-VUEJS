@@ -5,13 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Todo App</title>
+    <style>
+      .done {
+        text-decoration: line-through;
+      }
+    </style>
   </head>
   <body>
     <div id="todo-app">
+      <input
+        type="text"
+        :value="newTodo"
+        @input="newTodo = $event.target.value"
+      />
+      <button @click="addNewTodo">Add new todo</button>
       <ul>
         <li v-for="item in todos">
           <input type="checkbox" v-model="item.done" />
-          <span>{{ item.text }}</span>
+          <span :class="{'done': item.done, 'druga':true}">{{
+            item.text
+          }}</span>
         </li>
       </ul>
     </div>
@@ -20,12 +33,20 @@
       new Vue({
         el: "#todo-app",
         data: {
+          newTodo: "prvicno",
           todos: [
             { text: "Learn HTML", done: true },
             { text: "Learn CSS", done: true },
             { text: "Learn JS", done: true },
             { text: "Learn Vuejs", done: false }
           ]
+        },
+        methods: {
+          addNewTodo() {
+            const newTodo = { text: this.newTodo, done: false };
+            this.todos.push(newTodo);
+            this.newTodo = "";
+          }
         }
       });
     </script>
