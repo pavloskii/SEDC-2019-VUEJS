@@ -1,21 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-
-    <div class="input-group mb-3">
-      <input
-        @blur="setSearchText($event.target.value)"
-        type="text"
-        class="form-control"
-        placeholder="Search..."
-        :value="searchText"
-      />
-
-      <!-- <div class="input-group-append">
-        <button class="btn btn-primary" type="button" @click="searchAds">Search</button>
-      </div>-->
-    </div>
-
+    <SearchInput :value="searchText" :soBilo="6" />
     <div>
       <ul>
         <li v-for="item in filteredAds" :key="item.id">{{item.title}} - {{ item.price}}</li>
@@ -25,11 +11,13 @@
 </template>
 
 <script>
+import SearchInput from "./components/SearchInput";
+
 export default {
   data() {
     return {
       title: "SEDC Reklama",
-      searchText: "",
+      searchText: "Tocak",
       ads: [
         {
           id: 1,
@@ -64,6 +52,9 @@ export default {
 
       return searchedQuery;
     }
+  },
+  components: {
+    SearchInput: SearchInput
   }
 };
 </script>
