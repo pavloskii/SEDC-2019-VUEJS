@@ -1,12 +1,27 @@
 <template>
   <div class="input-group mb-3">
-    <!-- @blur="setSearchText($event.target.value)" -->
-    <input type="text" class="form-control" placeholder="Search..." :value="value" />
+    <input
+      @blur="setSearchText($event.target.value)"
+      type="text"
+      class="form-control"
+      placeholder="Search..."
+      :value="value"
+    />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["value", "soBilo"]
+  props: {
+    value: {
+      type: String,
+      default: ""
+    }
+  },
+  methods: {
+    setSearchText(searchQuery) {
+      this.$emit("search", searchQuery);
+    }
+  }
 };
 </script>

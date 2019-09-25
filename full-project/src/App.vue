@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <SearchInput :value="searchText" :soBilo="6" />
+    <SearchInput :value="searchText" @search="searchText = $event" />
     <div>
       <ul>
         <li v-for="item in filteredAds" :key="item.id">{{item.title}} - {{ item.price}}</li>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       title: "SEDC Reklama",
-      searchText: "Tocak",
+      searchText: "",
       ads: [
         {
           id: 1,
@@ -45,10 +45,9 @@ export default {
   },
   computed: {
     filteredAds() {
-      if (this.searchText == "") {
-        return this.ads;
-      }
-      const searchedQuery = this.ads.filter(ad => ad.title == this.searchText);
+      const searchedQuery = this.ads.filter(
+        ad => ad.title.toLowerCase().indexOf(this.searchText.toLowerCase()) >= 0
+      );
 
       return searchedQuery;
     }
