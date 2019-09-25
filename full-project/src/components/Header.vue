@@ -21,6 +21,10 @@
 .nav-item .nav-link {
   color: white;
 }
+
+.active {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
 /* .router-link-exact-active {
   background-color: white;
   color: blue !important;
