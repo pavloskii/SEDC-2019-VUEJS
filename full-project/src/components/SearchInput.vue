@@ -1,5 +1,5 @@
 <template>
-  <div class="input-group mb-3">
+  <div class="input-group mb-3 margin-top-10">
     <input
       @blur="setSearchText($event.target.value)"
       type="text"
@@ -25,3 +25,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.margin-top-10 {
+  margin-top: 10px;
+}
+</style>

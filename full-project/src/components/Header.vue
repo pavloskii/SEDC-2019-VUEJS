@@ -1,16 +1,21 @@
 <template>
   <header>
     <nav class="navbar navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">
+      <router-link class="navbar-brand" to="/">
         <img src="@/assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt />
-        SEDC ADS
-      </a>
+      </router-link>
       <ul class="nav justify-content-end nav-pills">
         <li class="nav-item">
-          <router-link class="nav-link" to="/" exact>Home</router-link>
+          <router-link class="nav-link" to="/" exact>
+            <i class="fas fa-home"></i>
+            Home
+          </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/post-ad">Post AD</router-link>
+          <router-link class="nav-link" to="/post-ad">
+            <i class="fas fa-plus-circle"></i>
+            Post AD
+          </router-link>
         </li>
       </ul>
     </nav>

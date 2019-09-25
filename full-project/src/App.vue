@@ -2,7 +2,7 @@
   <div>
     <Header />
 
-    <main>
+    <main class="container margin-bottom-70">
       <router-view></router-view>
     </main>
 
@@ -25,5 +25,8 @@ export default {
 <style>
 body {
   background-color: #9fcfeb;
+}
+.margin-bottom-70 {
+  margin-bottom: 70px;
 }
 </style>
