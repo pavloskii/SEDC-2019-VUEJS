@@ -22,11 +22,11 @@
 <script>
 import SearchInput from "../components/SearchInput";
 import Card from "../components/Card";
-import axios from "axios";
+import { axiosData } from "../axiosConfig";
 
 export default {
   created() {
-    axios.get("https://sedc-ads.firebaseio.com/ads.json").then(response => {
+    axiosData.get("/ads.json").then(response => {
       // const values = Object.values(response.data);
       // this.ads = values;
       const responseObject = response.data;
@@ -57,7 +57,10 @@ export default {
   computed: {
     filteredAds() {
       const searchedQuery = this.ads.filter(
-        ad => ad.title.toLowerCase().indexOf(this.searchText.toLowerCase()) >= 0
+        ad =>
+          ad.title.toLowerCase().indexOf(this.searchText.toLowerCase()) >= 0 ||
+          ad.description.toLowerCase().indexOf(this.searchText.toLowerCase()) >=
+            0
       );
 
       return searchedQuery;
