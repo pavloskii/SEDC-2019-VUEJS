@@ -22,8 +22,27 @@
 <script>
 import SearchInput from "../components/SearchInput";
 import Card from "../components/Card";
+import axios from "axios";
 
 export default {
+  created() {
+    axios.get("https://sedc-ads.firebaseio.com/ads.json").then(response => {
+      // const values = Object.values(response.data);
+      // this.ads = values;
+      const responseObject = response.data;
+
+      // const remappedAds = Object.keys(responseObject).map(key => {
+      //   const item = responseObject[key];
+      //   item.id = key;
+      //   return item;
+      // });
+      const remappedAds = Object.keys(responseObject).map(key => {
+        return { id: key, ...responseObject[key] };
+      });
+
+      this.ads = remappedAds;
+    });
+  },
   data() {
     return {
       searchText: "",
