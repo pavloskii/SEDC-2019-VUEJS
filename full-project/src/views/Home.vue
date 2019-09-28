@@ -27,25 +27,7 @@ export default {
   data() {
     return {
       searchText: "",
-      ads: [
-        {
-          id: 1,
-          image:
-            "https://cdn.pixabay.com/photo/2016/11/21/12/10/tv-1844964_960_720.jpg",
-          price: 99.99,
-          currency: "MKD",
-          title: "Televizor eftin",
-          description: "Cena po dogovor"
-        },
-        {
-          id: 2,
-          image: "",
-          price: 3000.99,
-          currency: "MKD",
-          title: "Tocak",
-          description: "Biser tocak 92"
-        }
-      ]
+      ads: []
     };
   },
   methods: {
