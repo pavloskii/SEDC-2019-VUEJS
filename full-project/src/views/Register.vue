@@ -36,6 +36,7 @@ export default {
           returnSecureToken: true
         })
         .then(response => {
+          this.$router.push("/");
           console.log(response.data);
         })
         .catch(error => {
