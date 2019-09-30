@@ -17,10 +17,30 @@
             Post AD
           </router-link>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" @click.prevent="logout" href>
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+      this.$store.commit("setUserDetails", {
+        email: "",
+        token: ""
+      });
+      this.$router.push("/login");
+    }
+  }
+};
+</script>
 
 <style>
 .nav-item .nav-link {

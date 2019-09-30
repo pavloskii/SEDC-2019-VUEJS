@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <form @submit.prevent="register">
+    <form @submit.prevent="register" novalidate>
       <div class="form-group">
         <label>Email address</label>
         <input type="email" class="form-control" v-model="email" />
@@ -14,6 +14,10 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <div class="alert alert-danger mt-3" role="alert" v-if="errors.length > 0">
+      <p v-for="error in errors" :key="error">{{error | errorMessage}}</p>
+    </div>
   </div>
 </template>
 
@@ -24,11 +28,30 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      errors: []
     };
   },
   methods: {
     register() {
+      this.errors = [];
+
+      if (this.email == "") {
+        this.errors.push("Email is required");
+      } else if (!/[^@]+@[^\.]+\..+/g.test(this.email)) {
+        this.errors.push("Invalid email");
+      }
+
+      if (this.password == "") {
+        this.errors.push("Password is required");
+      } else if (this.password.length < 6) {
+        this.errors.push("Password needs to be atleast 6 characters");
+      }
+
+      if (this.errors.length > 0) {
+        return;
+      }
+
       axiosAuth
         .post(`/accounts:signUp?key=${apiKey}`, {
           email: this.email,
@@ -36,15 +59,20 @@ export default {
           returnSecureToken: true
         })
         .then(response => {
-          this.$router.push("/");
           this.$store.commit("setUserDetails", {
             email: response.data.email,
             token: response.data.idToken
           });
+          this.$router.push("/");
         })
         .catch(error => {
-          console.log(error.response.data.error.message);
+          this.errors.push(error.response.data.error.message);
         });
+    }
+  },
+  filters: {
+    errorMessage(value) {
+      return value.replace(/_/g, " ");
     }
   }
 };
