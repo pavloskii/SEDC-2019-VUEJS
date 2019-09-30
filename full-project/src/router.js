@@ -5,6 +5,7 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import PostAD from "./views/PostAD.vue";
 import AdDetails from "./views/AdDetails.vue";
+import store from "./store";
 
 Vue.use(Router);
 
@@ -15,7 +16,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      component: Home
+      component: Home,
+      beforeEnter: navigationGuard
     },
     {
       path: "/login",
@@ -27,11 +29,21 @@ export default new Router({
     },
     {
       path: "/post-ad",
-      component: PostAD
+      component: PostAD,
+      beforeEnter: navigationGuard
     },
     {
       path: "/ad-details",
-      component: AdDetails
+      component: AdDetails,
+      beforeEnter: navigationGuard
     }
   ]
 });
+
+function navigationGuard(to, from, next) {
+  if (store.getters.isAuthenticated) {
+    next();
+  } else {
+    next("/login");
+  }
+}

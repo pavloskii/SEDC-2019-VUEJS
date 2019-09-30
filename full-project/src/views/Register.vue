@@ -37,7 +37,10 @@ export default {
         })
         .then(response => {
           this.$router.push("/");
-          console.log(response.data);
+          this.$store.commit("setUserDetails", {
+            email: response.data.email,
+            token: response.data.idToken
+          });
         })
         .catch(error => {
           console.log(error.response.data.error.message);

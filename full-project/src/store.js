@@ -5,34 +5,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    email: "asd@asd.com",
-    token: "blabla",
-    id: 123,
-    user: {
-      name: "Igor"
-    },
-    users: [{ name: "John" }, { name: "Joanna" }, { name: "Igor" }]
+    email: "",
+    token: ""
   },
   mutations: {
-    setEmail(state, email) {
+    setUserDetails(state, { email, token }) {
       state.email = email;
-    },
-    setToken(state, token) {
       state.token = token;
     }
   },
-  actions: {
-    fetchAds({ commit }, email) {
-      //Asinhroni raboti ovde pa posle prajte commit na mutacija
-      commit("setEmail", email);
-    }
-  },
+  actions: {},
   getters: {
-    getEmail(state) {
-      return state.email;
-    },
-    getUsers(state) {
-      return state.users.filter(user => user.name.indexOf("Jo") >= 0);
+    isAuthenticated(state) {
+      return state.token !== "";
     }
   }
 });

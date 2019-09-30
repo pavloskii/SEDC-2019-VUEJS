@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Header />
+    <Header v-if="isLoggedIn" />
 
     <main class="container margin-bottom-70">
       <router-view></router-view>
     </main>
 
-    <Footer />
+    <Footer v-if="isLoggedIn" />
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
   components: {
     Header,
     Footer: Footer
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    }
   }
 };
 </script>
