@@ -32,6 +32,7 @@
 export default {
   methods: {
     logout() {
+      localStorage.removeItem("token");
       this.$store.commit("setUserDetails", {
         email: "",
         token: ""

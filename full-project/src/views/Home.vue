@@ -14,6 +14,7 @@
         :title="item.title"
         :description="item.description"
         :price="item.price + ' ' + item.currency"
+        :id="item.id"
       />
     </div>
   </div>
@@ -22,31 +23,14 @@
 <script>
 import SearchInput from "../components/SearchInput";
 import Card from "../components/Card";
-import { axiosData } from "../axiosConfig";
 
 export default {
   created() {
-    axiosData.get("/ads.json").then(response => {
-      // const values = Object.values(response.data);
-      // this.ads = values;
-      const responseObject = response.data;
-
-      // const remappedAds = Object.keys(responseObject).map(key => {
-      //   const item = responseObject[key];
-      //   item.id = key;
-      //   return item;
-      // });
-      const remappedAds = Object.keys(responseObject).map(key => {
-        return { id: key, ...responseObject[key] };
-      });
-
-      this.ads = remappedAds;
-    });
+    this.$store.dispatch("fetchAds");
   },
   data() {
     return {
-      searchText: "",
-      ads: []
+      searchText: ""
     };
   },
   methods: {
@@ -56,7 +40,7 @@ export default {
   },
   computed: {
     filteredAds() {
-      const searchedQuery = this.ads.filter(
+      const searchedQuery = this.$store.state.ads.filter(
         ad =>
           ad.title.toLowerCase().indexOf(this.searchText.toLowerCase()) >= 0 ||
           ad.description.toLowerCase().indexOf(this.searchText.toLowerCase()) >=

@@ -33,7 +33,7 @@ export default new Router({
       beforeEnter: navigationGuard
     },
     {
-      path: "/ad-details",
+      path: "/ad-details/:id",
       component: AdDetails,
       beforeEnter: navigationGuard
     }
@@ -41,7 +41,8 @@ export default new Router({
 });
 
 function navigationGuard(to, from, next) {
-  if (store.getters.isAuthenticated) {
+  const token = localStorage.getItem("token");
+  if (token !== null) {
     next();
   } else {
     next("/login");

@@ -5,7 +5,7 @@
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">{{ description}}</p>
       <p class="card-text">{{ price }}</p>
-      <a href="#">more...</a>
+      <router-link :to="'/ad-details/' + id">more...</router-link>
     </div>
   </div>
 </template>
@@ -13,6 +13,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     image: String,
     title: {
       type: String,

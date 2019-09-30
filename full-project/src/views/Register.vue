@@ -59,6 +59,7 @@ export default {
           returnSecureToken: true
         })
         .then(response => {
+          localStorage.setItem("token", response.data.idToken);
           this.$store.commit("setUserDetails", {
             email: response.data.email,
             token: response.data.idToken
